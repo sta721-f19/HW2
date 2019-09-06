@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage{url,hyperref}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,array,comment,eucal}
+\input{macros}
+\usepackage{fullpage}
+
+\begin{document}
+\title{Homework 2: STA 721 Fall19}
+\author{Your Name}
+\date{\today}
+\maketitle
+
+\begin{enumerate}
+\item  Consider the linear model $\Y \sim\ N(\mu\, \sigma^2 \I_n)$ with $\mub = \one_n \beta_0 + \X \b$ and $\X$ a full rank matrix with (column) rank $p$, where $\X$ is linearly independent of the vector $\one_n$.
+
+\begin{enumerate}
+  \item  Show that the projection, $\P$, on the column space spanned by the vector $\one_n$ of length $n$ and $\X$ may be written as
+$$\P = \P_1 + \P_{\X - \one_n \bar{\x}^T}$$
+where $\X - \one_n \bar{\x}^T = (\I_n - \P_1) \X$.
+Show that diagonal  elements are
+$$h_{ii} = \frac{1}{n} + (\x_i-\bar{\x})^T\left((\X- \one_n \bar{\x}^T)^T(\X - \one_n \bar{\x}^T)\right)^{-1}(\x_i - \bar{\x})$$
+(recall all vectors are column vectors).  The $h_{ii}$ are known as the leverage values.
+{\em Hint:}  show that the mean function can be re-written as
+\begin{align*}
+\mub = & \one_n \beta_0 + \X \b \\
+    = & \one_n \beta_0 + \P_1 \X \b + (\I_n - \P_1) \X \b \\
+    = &  \one_n \beta_0 + \one_n \bar{x}^T \b +
+      (X - \one_n \bar{x}^T) \b \\
+    = & \one_n \alpha_0 + \X_c \b
+\end{align*}
+where $\X_c = (\I_n - \P_1)\X$ is the centered matrix of predictors and $$\alpha =  \one_n \beta_0 + \one_n \bar{\x}^T \b $$
+is the intercept in the model with the centered parameters.  If the mean is in the column space of $C(\one_n, \X)$ show that it is in the column space $C(\one_n, \X_c)$.  Last show that  $\P_1 + \P_{\X_c}$ is an orthogonal projection on the column space $C(\one_n, \X)$.
+
+
+\item Find the sampling distribution of $\hat{\mu}_i$ (the mean of  $Y_i$ at $\x_i^T$) and express the variance as a function of $h_{ii}$.  Provide an  expression for a 95\% confidence interval.   For what values of $\x$  will the interval be the narrowest? Explain.
+
+\item Given $\sigma^2$, find the distribution of $e_i$ as a function  of $h_{ii}$.  Explain (rigorously) why $e_i$ unconditional on  $\sigma^2$ does not have a student $t$ distribution with  $n - p - 1$ degrees of freedom.
+
+\end{enumerate}
+
+  \item Now consider predicting $Y_{*}$ at a new point $\x_{*}^T$ where $Y_{*} \sim N(1  \beta_0 + \x_*^T\b, \sigma^2)$.
+\begin{enumerate}
+  \item Find the distribution of the predicted residual $e_{*}= Y_* - 1\hat{\beta}_0 - \x_*^T \hat{\b}$  (given $\beta_0, \b$ and $\sigma^2$).  Both $Y$ and $Y_{*}$ are random variables here.  {\em Hint: consider using the centered parameterization}
+
+  \item Show that the standardized predicted residual (center so that the mean is 0 and and scale (sd) is 1 with $\sigma^2$ replaced by the usual unbiased estimate $\hat{\sigma}^2 = \Y^T (\I_n − \P_1 - \P_{\X_c})\Y/(n − p − 1)$ has a student $t$ distribution. What are the degrees of freedom?  (Explain)
+
+  \item Use the standardized predicted residual to construct a 95\% Confidence interval (also called a prediction interval) for $Y_{*}$.
+
+\end{enumerate}
+
+\item Refer to the Prostate data  from {\tt library(lasso2)} {\tt data(Prostate, package="lasso2")} for this proplem (see \R code from Lecture.)
+
+\begin{enumerate}
+  \item Fit the regression model with
+  response  {\tt lcavol}, and variables {\tt svi} and {\tt lpsa} as
+  predictors.  Construct 95\% confidence intervals for
+  each coefficient and provide a meaningful interpretations for
+  changes in the  median cancer volume  ( not log cancer volume) include any
+  units etc in your interpretation.  Note ``a 1 unit'' change may or may not be
+  meaningful for interpretation so adjust as needed.
+<<>>=
+
+@
+
+
+  \item Plot the cancer volume versus {\tt PSA}  using a log scale on both axes. Add
+  the fitted regression function for {\tt svi = 1} and {\tt svi = 0}, with
+  lines representing the (pointwise) 95\%  confidence intervals (CI) for
+  each.  Use a different color and line type for the fitted function and the confidence intervals.   {\em Hint:  see the {\tt predict} function in \R to obtain the  confidence intervals}
+<<>>=
+
+@
+
+  \item Add to the plot 95\% prediction intervals  from  {\tt predict} using a different line type and color from the CI.   Add a legend to your plot and an informative caption.
+<<>>=
+
+@
+
+  \item Explain why are the prediction intervals wider than the confidence intervals.  Where will the prediction intervals be the narrowest?  Will the width of the prediction intervals ever go to 0, with an increasing sample size?  Explain.
+
+\end{enumerate}
+
+\item Consider the model $$\Y \mid \X \sim \N(\X\b, \sigma^2 \I_n)$$ and estimation of $\b$ using quadratic loss $(\b -
+  \av)^T(\b - \av)$ for some estimator $\av$.  Find the expected quadratic
+  loss if we use the MLE $\hat{\b}$ for $\av$ conditional on $\X$. Simplify the expression
+  as a function of the eigenvalues of $\X^T\X$.   What happens as the
+  smallest eigenvalue of $\X^T\X$ goes to $0$?
+\item  Consider estimation of $\mub = \X \b$ at the observed data points
+  $\X$.  Find the expected  quadratic loss
+  $E[(\mub - \X\hat{\b})^T(\mub - \X\hat{\b})]$ conditional on $\X$.  What happens as the  smallest eigenvalue of $\X^T\X$ goes to 0?
+
+\item Consider predicting a new $\Y_{*}$ at the observed data points $\X$
+  where $\Y_{*}$ is independent of $\Y$.  Find the expected quadratic
+  loss for $E[(\Y_{*} - \X\hat{\b})^T(\Y_{*} - \X\hat{\b})]$.  What happens as the
+  smallest eigenvalue of $\X^T\X$ goes to 0?
+
+\item Consider predicting $\Y_{*}$'s at new points $\X_{*}$ with
+  $E[\X_{*}^T\X_{*}] = \I_p$.  Find the expected quadratic loss
+  $E[(\Y_{*} - \X_{*}\hat{\b})^T(\Y_{*} - \X_{*}\hat{\b})]$ conditional on $\X$ and $\X_{*}$ and then unconditional on $\X_{*}$ (but still conditional on $\X$.  What
+  happens as the smallest eigenvalue of $\X^T\X$ goes to 0?  (If
+  $E[\X_{*}^T\X_{*}] = \Sigma_{\X} > 0$ does that change the result)
+
+\item Briefly comment on the difference in estimation and prediction at observed
+  data versus new data as $\X$ becomes non-full rank.
+  Which is the most stable?  Which is the least?
+
+
+
+
+\end{enumerate}
+\end{document}
