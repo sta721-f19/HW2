@@ -43,7 +43,7 @@ is the intercept in the model with the centered parameters.  If the mean is in t
 \begin{enumerate}
   \item Find the distribution of the predicted residual $e_{*}= Y_* - 1\hat{\beta}_0 - \x_*^T \hat{\b}$  (given $\beta_0, \b$ and $\sigma^2$).  Both $Y$ and $Y_{*}$ are random variables here.  {\em Hint: consider using the centered parameterization}
 
-  \item Show that the standardized predicted residual (center so that the mean is 0 and and scale (sd) is 1 with $\sigma^2$ replaced by the usual unbiased estimate $\hat{\sigma}^2 = \Y^T (\I_n − \P_1 - \P_{\X_c})\Y/(n − p − 1)$ has a student $t$ distribution. What are the degrees of freedom?  (Explain)
+  \item Show that the standardized predicted residual (center so that the mean is 0 and and scale (sd) is 1 with $\sigma^2$ replaced by the usual unbiased estimate $\hat{\sigma}^2 = \Y^T (\I_n − \P_1 - \P_{\X_c})\Y/(n- p - 1)$ has a student $t$ distribution. What are the degrees of freedom?  (Explain)
 
   \item Use the standardized predicted residual to construct a 95\% Confidence interval (also called a prediction interval) for $Y_{*}$.
 
