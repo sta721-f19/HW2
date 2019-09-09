@@ -82,8 +82,8 @@ is the intercept in the model with the centered parameters.  If the mean is in t
 \end{enumerate}
 
 \item Consider the model $$\Y \mid \X \sim \N(\X\b, \sigma^2 \I_n)$$ and estimation of $\b$ using quadratic loss $(\b -
-  \av)^T(\b - \av)$ for some estimator $\av$.  Find the expected quadratic
-  loss if we use the MLE $\hat{\b}$ for $\av$ conditional on $\X$. Simplify the expression
+  \a)^T(\b - \a)$ for some estimator $\a$.  Find the expected quadratic
+  loss if we use the MLE $\hat{\b}$ for $\a$ conditional on $\X$. Simplify the expression
   as a function of the eigenvalues of $\X^T\X$.   What happens as the
   smallest eigenvalue of $\X^T\X$ goes to $0$?
 \item  Consider estimation of $\mub = \X \b$ at the observed data points
