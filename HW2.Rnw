@@ -29,7 +29,7 @@ $$h_{ii} = \frac{1}{n} + (\x_i-\bar{\x})^T\left((\X- \one_n \bar{\x}^T)^T(\X - \
       (X - \one_n \bar{x}^T) \b \\
     = & \one_n \alpha_0 + \X_c \b
 \end{align*}
-where $\X_c = (\I_n - \P_1)\X$ is the centered matrix of predictors and $$\alpha =  \one_n \beta_0 + \one_n \bar{\x}^T \b $$
+where $\X_c = (\I_n - \P_1)\X$ is the centered matrix of predictors and $$\alpha =   \beta_0 +  \bar{\x}^T \b $$
 is the intercept in the model with the centered parameters.  If the mean is in the column space of $C(\one_n, \X)$ show that it is in the column space $C(\one_n, \X_c)$.  Last show that  $\P_1 + \P_{\X_c}$ is an orthogonal projection on the column space $C(\one_n, \X)$.
 
 
